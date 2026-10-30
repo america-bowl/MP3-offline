@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f4">
+  <meta name="description" content="端末に保存した音楽をオフラインでも再生するシンプルな音楽プレイヤー。">
+  <title>音楽 — オフラインプレイヤー</title>
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div>
+        <p class="kicker">LOCAL MUSIC</p>
+        <h1>音楽</h1>
+        <p class="intro">端末に入れた曲を、ネットがない場所でも。</p>
+      </div>
+      <p class="connection"><span class="dot" id="onlineDot"></span><span id="onlineText">接続を確認中</span></p>
+    </header>
+
+    <main>
+      <section class="section search-section" aria-labelledby="searchHeading">
+        <div class="section-head">
+          <h2 id="searchHeading">曲をさがす</h2>
+          <span class="small-label">オンラインのみ</span>
+        </div>
+        <p class="note">YouTubeのタイトルとリンクを表示するで。音源の再生・保存はYouTubeや権利者の公式手段を使ってな。</p>
+        <form id="searchForm" class="search-form">
+          <label class="visually-hidden" for="searchInput">曲名またはアーティスト名</label>
+          <input id="searchInput" name="q" type="search" maxlength="100" placeholder="曲名、アーティスト名" autocomplete="off">
+          <button id="searchButton" class="button button-dark" type="submit">検索</button>
+        </form>
+        <p id="searchMessage" class="message" role="status" aria-live="polite"></p>
+        <ol id="searchResults" class="search-results"></ol>
+      </section>
+
+      <section class="section library-section" aria-labelledby="libraryHeading">
+        <div class="section-head">
+          <h2 id="libraryHeading">この端末の曲</h2>
+          <span id="trackCount" class="small-label">0曲</span>
+        </div>
+        <p class="note">ここへ追加した曲は、このブラウザの保存領域に入るで。</p>
+        <div class="library-tools">
+          <button id="addButton" class="button button-dark" type="button">＋ 音楽ファイルを追加</button>
+          <button id="clearButton" class="button button-plain" type="button" disabled>リストを空にする</button>
+        </div>
+        <input id="fileInput" type="file" accept="audio/*,.mp3,.m4a,.aac,.ogg,.opus,.wav,.flac" multiple hidden>
+
+        <div class="now-playing" aria-live="polite">
+          <p class="now-label">再生中</p>
+          <p id="nowTitle" class="now-title">曲を選んでください</p>
+          <p id="nowMeta" class="now-meta">曲を追加すると、ここに表示されます</p>
+          <audio id="audio" controls preload="metadata" aria-label="音楽プレイヤー"></audio>
+          <div class="player-tools">
+            <button id="previousButton" class="button button-plain" type="button" disabled>前の曲</button>
+            <button id="nextButton" class="button button-plain" type="button" disabled>次の曲</button>
+            <button id="repeatButton" class="button button-plain" type="button" aria-pressed="false" disabled>くり返し: オフ</button>
+          </div>
+        </div>
+
+        <ol id="trackList" class="track-list"></ol>
+        <p id="emptyMessage" class="empty-message">まだ曲がないで。MP3などの音楽ファイルを追加してな。</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>ページ本体は初回アクセス時にキャッシュし、音楽ファイルはブラウザ内に保存するで。検索はオフラインでは使えへん。</p>
+      <p>学校の設定でブラウザデータが消えることもあるから、大事な音源の元ファイルは別の場所にも残しといてな。</p>
+    </footer>
+  </div>
+</body>
+</html>
